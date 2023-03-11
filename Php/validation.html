@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <form onsubmit="validate()">
+            <label for="name">Name: </label>
+            <input  type="text" id="name">
+            <br>
+            <label for="age">Age: </label>
+            <input  type="text" id="age">
+            <br>
+            <label for="gender">Gender: </label>
+            <input type="radio" name="gender" value="male"><lable>Male</lable>
+            <input type="radio" name="gender" value="female"><lable>Female</lable>
+            <br>
+            <label for="country">Country: </label>
+            <input type="text" id="country">
+            <br>
+            <input type="submit">
+        </form>
+        <script>
+            function validate(){
+                var name=document.getElementById("name").values;
+                var roll=document.getElementById("roll").values;
+                var gender=document.getElementsByName("gender").checked;
+                var country=document.getElementById("country").values;
+                
+                if (!/^[a-zA-Z ]+$/.test(name)) {
+                 alert('name must onlu contain Alphabets');
+                }
+                if(name.length<6){
+                    alert('Name must of  lenght 6');
+                }
+
+            }
+        </script>
+    </body>
+</html>
