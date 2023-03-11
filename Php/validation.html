@@ -1,38 +1,55 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
-    <body>
-        <form onsubmit="validate()">
-            <label for="name">Name: </label>
-            <input  type="text" id="name">
-            <br>
-            <label for="age">Age: </label>
-            <input  type="text" id="age">
-            <br>
-            <label for="gender">Gender: </label>
-            <input type="radio" name="gender" value="male"><lable>Male</lable>
-            <input type="radio" name="gender" value="female"><lable>Female</lable>
-            <br>
-            <label for="country">Country: </label>
-            <input type="text" id="country">
-            <br>
-            <input type="submit">
-        </form>
-        <script>
-            function validate(){
-                var name=document.getElementById("name").values;
-                var roll=document.getElementById("roll").values;
-                var gender=document.getElementsByName("gender").checked;
-                var country=document.getElementById("country").values;
-                
-                if (!/^[a-zA-Z ]+$/.test(name)) {
-                 alert('name must onlu contain Alphabets');
-                }
-                if(name.length<6){
-                    alert('Name must of  lenght 6');
-                }
+<head>
+    <title>Client-side Validation</title>
+</head>
+<body>
+    <form method="post" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name"><br>
 
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age" placeholder="Enter your age"><br>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select><br>
+
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" placeholder="Enter your country"><br>
+
+        <input type="submit" value="submit">
+    </form>
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById("name").value;
+            var age = document.getElementById("age").value;
+            var country = document.getElementById("country").value;
+
+            // Check if all fields are filled
+            if (name == "" || age == "" || country == "") {
+                alert("All fields are required");
+                return false;
             }
-        </script>
-    </body>
+
+            // Check if name contains only alphabets and is greater than 6 characters
+            if (!/^[a-zA-Z]+$/.test(name) || name.length < 6) {
+                alert("Name must only contain alphabets and must be greater than 6 characters");
+                return false;
+            }
+
+            // Check if age is an integer and between 16 and 50
+            if (!Number.isInteger(parseInt(age)) || parseInt(age) < 16 || parseInt(age) > 50) {
+                alert("Age must be an integer and must be between 16 and 50");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
 </html>
